@@ -1,0 +1,39 @@
+form {
+  margin-block: 2rem;
+}
+
+input,
+select {
+  width: 100%;
+  border: none;
+  outline: 0 solid transparent;
+}
+
+input {
+  color: var(--text-color-dark);
+}
+
+select {
+  padding-inline-end: 1rem;
+}
+
+.form-group {
+  border-radius: 0.5em;
+  overflow: hidden;
+  padding: 0.75rem;
+}
+
+.form-group:first-of-type {
+  width: 35%;
+  gap: 1rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  top: auto;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
