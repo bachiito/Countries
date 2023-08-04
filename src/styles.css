@@ -1,1 +1,92 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-weight: 300;
+  font-family: "Nunito Sans";
+  src: url("assets/fonts/NunitoSans_7pt-Light.woff2") format("woff2");
+}
+
+@font-face {
+  font-weight: 600;
+  font-family: "Nunito Sans";
+  src: url("assets/fonts/NunitoSans_7pt-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-weight: 800;
+  font-family: "Nunito Sans";
+  src: url("assets/fonts/NunitoSans_7pt-ExtraBold.woff2") format("woff2");
+}
+
+/*============
+   RESET 
+============ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nunito Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--color-secondary);
+  margin: 0;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/*==============
+   VARIABLES
+============== */
+:root {
+  --color-primary: hsl(0 0% 100%);
+  --color-secondary: hsl(0 0% 98%);
+  --text-color: hsl(0 0% 0%);
+}
+
+/*============
+   LAYOUT
+============ */
+
+.container {
+  width: min(90rem, 100% - 2rem);
+  margin-inline: auto;
+}
+
+/*============
+   FLEXBOX
+============ */
+
+.flex-group {
+  display: flex;
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.background-primary {
+  background-color: var(--color-primary);
+}
