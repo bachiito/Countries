@@ -25,13 +25,13 @@ p:not(.card__title) {
 }
 
 .card__img {
-  height: 50%;
+  aspect-ratio: 1.5 / 1;
   width: 100%;
+  object-fit: cover;
 }
 
 .card__body {
-  padding: 1.5rem;
-  padding-block-end: 0;
+  padding: 1.25rem;
 }
 
 .card__title {

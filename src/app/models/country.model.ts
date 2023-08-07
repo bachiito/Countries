@@ -15,7 +15,7 @@ export interface Country {
   demonyms?: Record<string, Demonyms>;
   fifa?: string;
   flag?: string;
-  flags?: Flags;
+  flags: Flags;
   idd?: Idd;
   independent?: boolean;
   landlocked?: boolean;

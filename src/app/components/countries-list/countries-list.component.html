@@ -2,17 +2,23 @@
   <div class="container">
     <ul class="countries-list">
       <li class="card background-primary" *ngFor="let country of countries">
-        <img [src]="country.flag" alt="" class="card__img" />
+        <img
+          [src]="country.flags.svg"
+          [alt]="country.flags.alt"
+          class="card__img"
+        />
         <div class="card__body">
           <p class="card__title">
-            <strong>{{ country.name }}</strong>
+            <strong>{{ country.name.common }}</strong>
           </p>
           <p>
             <span class="bold">Population:</span>
             {{ country.population.toLocaleString() }}
           </p>
           <p><span class="bold">Region</span>: {{ country.region }}</p>
-          <p><span class="bold">Capital</span>: {{ country.capital }}</p>
+          <p>
+            <span class="bold">Capital</span>: {{ country.capital.join(", ") }}
+          </p>
         </div>
       </li>
     </ul>
