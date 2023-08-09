@@ -2,7 +2,7 @@ export interface Country {
   altSpellings?: string[];
   area?: number;
   borders: string[];
-  capital: string[];
+  capital?: string[];
   capitalInfo?: CapitalInfo;
   car?: Car;
   cca2?: string;

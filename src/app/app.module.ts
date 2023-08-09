@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CountriesFilterComponent } from './components/countries-filter/countries-filter.component';
 import { CountriesListComponent } from './components/countries-list/countries-list.component';
+import { DropShadowDirective } from './directives/drop-shadow.directive';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { CountriesListComponent } from './components/countries-list/countries-li
     HeaderComponent,
     CountriesFilterComponent,
     CountriesListComponent,
+    DropShadowDirective,
   ],
   imports: [BrowserModule, HttpClientModule],
   providers: [],
