@@ -1,5 +1,5 @@
 <div class="container">
-  <form class="flex-group justify-between">
+  <form class="flex-group justify-between" [formGroup]="countryForm">
     <div
       class="form-group flex-group background-primary"
       appDropShadow
@@ -14,6 +14,7 @@
         id="country"
         class="input"
         placeholder="Search for a country..."
+        formControlName="name"
       />
     </div>
     <div
@@ -24,9 +25,13 @@
       [blurRadius]="1"
     >
       <label for="regions" class="visually-hidden">Filter by Region</label>
-      <select id="regions">
-        <option value="" selected disabled hidden>Filter by Region</option>
-        <option *ngFor="let region of regions" [value]="region">
+      <select
+        id="regions"
+        formControlName="region"
+        (change)="onRegionChanged()"
+      >
+        <option value="All" selected>Filter by Region</option>
+        <option *ngFor="let region of regions.slice(1)" [value]="region">
           {{ region }}
         </option>
       </select>
