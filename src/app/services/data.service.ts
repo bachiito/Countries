@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { Country } from '../models/country.model';
 import { Region } from '../models/region.model';
+import { fallBackRegion } from '../models/region.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,7 @@ import { Region } from '../models/region.model';
 export class DataService {
   private countriesAPIDomain = 'https://restcountries.com/v3.1';
   private countries$ = new BehaviorSubject<Country[]>([]);
+  private countries: Country[] = [];
 
   constructor(private httpClient: HttpClient) {
     this.init();
@@ -18,10 +20,15 @@ export class DataService {
 
   private init(): void {
     this.httpClient
-      .get<Country[]>(`${this.countriesAPIDomain}/all`)
+      .get<Country[]>(`${this.countriesAPIDomain}/${fallBackRegion}`)
       .subscribe((data: Country[]) => {
-        this.countries$.next(data);
+        this.safeAndEmitData(data);
       });
+  }
+
+  private safeAndEmitData(data: Country[]): void {
+    this.countries = data;
+    this.countries$.next(data);
   }
 
   getCountriesSubject(): BehaviorSubject<Country[]> {
@@ -29,7 +36,7 @@ export class DataService {
   }
 
   setCountriesByRegion(region: Region): void {
-    if (region === 'All') {
+    if (region === fallBackRegion) {
       this.init();
       return;
     }
@@ -37,7 +44,20 @@ export class DataService {
     this.httpClient
       .get<Country[]>(`${this.countriesAPIDomain}/region/${region}`)
       .subscribe((data: Country[]) => {
-        this.countries$.next(data);
+        this.safeAndEmitData(data);
       });
+  }
+
+  searchCountry(name?: string | null) {
+    if (!name) {
+      this.countries$.next(this.countries);
+      return;
+    }
+
+    const matches = this.countries.filter((country: Country) => {
+      return country.name.common.toLowerCase().includes(name.toLowerCase());
+    });
+
+    this.countries$.next(matches);
   }
 }

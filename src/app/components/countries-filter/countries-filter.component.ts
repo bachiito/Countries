@@ -3,10 +3,11 @@ import { FormBuilder } from '@angular/forms';
 
 import { DataService } from 'src/app/services/data.service';
 import { Region } from 'src/app/models/region.model';
-import { Regions } from 'src/app/models/region.model';
+import { regions } from 'src/app/models/region.model';
+import { fallBackRegion } from 'src/app/models/region.model';
 
 interface CountryForm {
-  name: string;
+  name?: string;
   region: Region;
 }
 
@@ -16,11 +17,11 @@ interface CountryForm {
   styleUrls: ['./countries-filter.component.css'],
 })
 export class CountriesFilterComponent {
-  regions = structuredClone(Regions);
+  regions = structuredClone(regions);
 
   countryForm = this.formBuilder.group<CountryForm>({
-    name: '',
-    region: 'All',
+    name: undefined,
+    region: fallBackRegion,
   });
 
   constructor(
@@ -29,10 +30,13 @@ export class CountriesFilterComponent {
   ) {}
 
   onRegionChanged(): void {
-    const { region } = this.countryForm.value;
+    const region = this.countryForm.value.region ?? fallBackRegion;
+    this.dataService.setCountriesByRegion(region);
+    this.countryForm.patchValue({ name: undefined });
+  }
 
-    if (region) {
-      this.dataService.setCountriesByRegion(region);
-    }
+  onCountrySearched(): void {
+    const name = this.countryForm.value?.name;
+    this.dataService.searchCountry(name);
   }
 }
