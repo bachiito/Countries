@@ -31,7 +31,7 @@
         formControlName="region"
         (change)="onRegionChanged()"
       >
-        <option value="All" selected>Filter by Region</option>
+        <option [value]="fallbackRegion" selected>Filter by Region</option>
         <option *ngFor="let region of regions.slice(1)" [value]="region">
           {{ region }}
         </option>

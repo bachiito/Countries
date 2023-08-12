@@ -4,7 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 import { Region } from 'src/app/models/region.model';
 import { regions } from 'src/app/models/region.model';
-import { fallBackRegion } from 'src/app/models/region.model';
+import { fallbackRegion } from 'src/app/models/region.model';
 
 interface CountryForm {
   name?: string;
@@ -18,10 +18,11 @@ interface CountryForm {
 })
 export class CountriesFilterComponent {
   regions = structuredClone(regions);
+  fallbackRegion = fallbackRegion;
 
   countryForm = this.formBuilder.group<CountryForm>({
     name: undefined,
-    region: fallBackRegion,
+    region: fallbackRegion,
   });
 
   constructor(
@@ -30,7 +31,7 @@ export class CountriesFilterComponent {
   ) {}
 
   onRegionChanged(): void {
-    const region = this.countryForm.value.region ?? fallBackRegion;
+    const region = this.countryForm.value.region ?? fallbackRegion;
     this.dataService.setCountriesByRegion(region);
     this.countryForm.patchValue({ name: undefined });
   }

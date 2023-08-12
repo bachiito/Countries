@@ -1,5 +1,5 @@
 export const regions = [
-  'All',
+  'all',
   'Africa',
   'America',
   'Asia',
@@ -9,4 +9,4 @@ export const regions = [
 
 export type Region = (typeof regions)[number];
 
-export const fallBackRegion = regions[0];
+export const fallbackRegion = regions[0];

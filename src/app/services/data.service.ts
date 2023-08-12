@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { Country } from '../models/country.model';
 import { Region } from '../models/region.model';
-import { fallBackRegion } from '../models/region.model';
+import { fallbackRegion } from '../models/region.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,7 @@ export class DataService {
 
   private init(): void {
     this.httpClient
-      .get<Country[]>(`${this.countriesAPIDomain}/${fallBackRegion}`)
+      .get<Country[]>(`${this.countriesAPIDomain}/${fallbackRegion}`)
       .subscribe((data: Country[]) => {
         this.safeAndEmitData(data);
       });
@@ -36,7 +36,7 @@ export class DataService {
   }
 
   setCountriesByRegion(region: Region): void {
-    if (region === fallBackRegion) {
+    if (region === fallbackRegion) {
       this.init();
       return;
     }
